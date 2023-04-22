@@ -19,8 +19,12 @@ export class PatientsController {
     return await this.patientsService.findAll();
   }
   @Post()
-  async create(@Body() body: PatientsDto) {
+  async create(@Body() body: object) {
     return await this.patientsService.create(body);
+  }
+  @Post('mock')
+  async mock() {
+    return await this.patientsService.mock();
   }
   @Get(':id')
   async findById(@Param() params: any) {
