@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
 } from '@nestjs/common';
 import { PatientsDto } from 'src/common/interfaces/patients.dto';
@@ -15,8 +16,8 @@ import { PatientsService } from 'src/service/patients/patients.service';
 export class PatientsController {
   constructor(private patientsService: PatientsService) {}
   @Get()
-  async findAll() {
-    return await this.patientsService.findAll();
+  async findAll(@Query() query: any) {
+    return await this.patientsService.findAll(query.select);
   }
   @Post()
   async create(@Body() body: object) {

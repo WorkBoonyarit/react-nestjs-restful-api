@@ -8,8 +8,9 @@ export class PatientsService {
   constructor(
     @InjectModel(Patient.name) private patientModel: Model<Patient>,
   ) {}
-  async findAll() {
-    return this.patientModel.find();
+  async findAll(select: any) {
+    const field = select ? select.split(',') : null;
+    return this.patientModel.find().select(field);
   }
   async create(data: object) {
     return this.patientModel.create(data);
